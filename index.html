@@ -1,0 +1,110 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<title></title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+
+	<link rel="stylesheet" href="stylesheets/styles.css">
+
+	<script src="javascripts/modernizr-latest.js"></script>
+	<script src="javascripts/respond.min.js"></script>
+</head>
+<body>
+
+<div id='workspace' >
+
+  <div id='toolbar'>
+	<div data-bind='click: Cherry.ui.library.add_song' class="btn">Add a song</div>
+	<div data-bind='click: Cherry.ui.playlist.add' class="btn">Add a playlist</div>
+	<div data-bind='click: Cherry.ui.song.select_next' class="btn">Next</div>
+  </div>
+  
+  <div id='library'>
+	<ul id='libraryDrag'>
+	  <!-- ko foreach: library -->
+	  <li data-bind='draggable: $data, text: name'></li>
+	  <!-- /ko -->
+	</ul>
+  </div>
+  
+  <!-- ko foreach: playlists -->
+  <div class='b_playlist_container' data-bind='
+	   playlist_drag_ui: $data,
+	   css: { selected: selected },
+	   style: { left: left() + "px", top: top() + "px"  },
+	   click: Cherry.ui.playlist.select
+	   '>
+	<div class="b_playlist_container_handle">X</div>
+	<ul class='b_playlist' 
+		data-bind='
+		sortable: { 
+		template: "tmplSong", 
+		data: songs
+		}
+		'
+		>
+	</ul>
+	<div class="playlist_bottom_drag_target"></div>
+  </div>
+  <!-- /ko -->
+
+  <!-- <div id='frameWorkspace' data-bind='template: {name: "tmplPlaylist", foreach: playlists}'></div> -->
+  
+  
+</div>
+<script type='text/html' id='tmplSong'>
+	<li class='b_song' data-bind='
+		click: function( obj, e) { Cherry.ui.song.select( obj); Cherry.ui.playlist.select_index( $index());},
+		css: { 
+		selected_song: selected, 
+		selected_index: $index() == Cherry.state.selected.playlist_idx() && $parent.selected() }
+		'>
+		<span class='b_song_name'
+			data-bind='
+				text: name
+			'
+		></span>
+		<a data-bind='click: $parent.removeSong'>X</a>
+	</li>
+</script>
+
+	
+	
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.js"><\/script>')</script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
+<script>window.jQuery || document.write('<script src="js/libs/jquery-1.8.16.min.js"><\/script>')</script>
+
+<script src="javascripts/knockout-2.3.0.js"></script>
+<script src="javascripts/knockout-sortable.js"></script>
+<script src="javascripts/knockout-jquery-ui-widget.js"></script>
+
+
+<!-- scripts concatenated and minified via ant build script-->
+<!-- <script src="javascripts/plugins.js"></script> -->
+<script src="javascripts/start.js"></script>
+<!-- end scripts-->
+
+<script>
+	var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']]; // Change UA-XXXXX-X to be your site's ID
+	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+	g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+	s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<!--[if lt IE 7 ]>
+	<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
+	<script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
+<![endif]-->
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+// I gather this file is a starting point for the project.
+@import "bootstrap";
+
+// Include responsive Bootstrap styles
+@import "bootstrap-responsive";
+
+$playlist_background_color: white;
+$playlist_color: black;
+
+html, body, #workspace {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0
+}
+
+div.b_playlist_container {
+	width: 200px;
+	border: 1px solid black;
+	background-color: $playlist_background_color;
+	color: $playlist_color;
+	display: inline-block;
+	position: absolute;
+	
+	div.b_playlist_container_handle {
+		width: 100%;
+		color: $playlist_background_color;
+		background-color: $playlist_color;
+	}
+
+	ul.b_playlist {
+		li {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			display: block;
+		}
+
+		.selected_song {
+			border: 1px dashed red;
+		}
+		
+		.selected_index { 
+			background-color: yellow;
+		}
+
+		margin: 0;
+		padding: 5px 0 0 0;
+		
+	}
+	div.playlist_bottom_drag_target.waiting {
+		height: 10px;
+		background-color: rgb( 220, 220, 220);
+	}
+	div.playlist_bottom_drag_target.hover {
+		height: 10px;
+		background-color: red;
+	}
+
+}
+div.b_playlist_container.selected {
+	border: 2px solid blue;
+}
+	
+
+#frameWorkspace {
+	height: 500px;
+	/* overflow: scroll; */
+	/* white-space: nowrap; */
+}
+
+/* #workspace { */
+/* 	position: absolute; */
+/* 	height: 100%; */
+/* 	width: 100%; */
+/* 	margin: 0; */
+/* 	padding: 0; */
+
+/* } */
+
+#library {
+	border: 1px solid red;
+	left: 40px;
+	top: 40px;
+	display: inline-block;
+	position: absolute;
+}
