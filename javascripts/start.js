@@ -4,11 +4,8 @@
 
 (function( $)
 {
-
-
 	function initialize_environment( )
 	{
-
 		ko.bindingHandlers.debug = {
 			init: function( element, valueAccessor, allBindingsAccessor, context) {
 				
@@ -22,7 +19,6 @@
 		ko.bindingHandlers.playlist_drag_ui = {
 			init: function( element, valueAccessor, allBindingsAccessor, context) {
 				var value = valueAccessor();
-				
 
 				$(element)
 					.data( "valueAccessor", valueAccessor )
@@ -89,7 +85,7 @@
 				data_in = data_in || {};
 				
 				var x = {
-					"id" : Cherry.support.next_id( "song"),
+					"id" : Cherry.ui.next_id( "song"),
 					"name" : data_in.name || null,
 					"path" : data_in.path || null
 				};
@@ -128,7 +124,7 @@
 					return this == Cherry.state.selected.playlist();
 				}, x)
 
-				x.id = Cherry.support.next_id( "playlist");
+				x.id = Cherry.ui.next_id( "playlist");
 				return x;
 			}	
 		};
@@ -204,6 +200,23 @@
 						song( null); pl( null); idx( null);
 					}
 				}
+			},
+
+			next_id : function Cherry__support__next_id( id_type)
+			{
+				if( !id_type) {				
+					throw( "NoIdTypeError");
+				}
+				
+				else if( Cherry.available_ids[id_type] || typeof Cherry.available_ids[id_type] == "number")	
+				{
+					Cherry.available_ids[id_type] ++;
+					return( Cherry.available_ids[id_type]);
+				}				
+				else
+				{
+					throw( "InvalidIdTypeRequestedError");
+				}
 			}
 		};
 
@@ -215,55 +228,32 @@
 			}
 		};
 
-		Cherry.support = {
-			
-			next_id : function Cherry__support__next_id( id_type)
+		Cherry.sample_data = function Cherry__support__sample_data(){
+			var letters = ["a", "b", "c", "d", "e", "f", "g"];
+			for( var letter in letters)
 			{
-				if( !id_type)
-				{
-					throw( "NoIdTypeError");
-				}
+				var fillString = letters[letter] + letters[letter];
 				
-				else if( Cherry.available_ids[id_type] || typeof Cherry.available_ids[id_type] == "number")
-				{
-					Cherry.available_ids[id_type] ++;
-					return( Cherry.available_ids[id_type]);
-				}
-				
-				else
-				{
-					throw( "InvalidIdTypeRequestedError");
-				}
-			},
-			
-			sample_data: function Cherry__support__sample_data(){
-				var letters = ["a", "b", "c", "d", "e", "f", "g"];
-				for( var letter in letters)
-				{
-					var fillString = letters[letter] + letters[letter];
-					
-					var x = Cherry.prototypes.Song( {
-							"name" : fillString,
-							"path" : fillString
-						});
-					Cherry.library.push( x);
-				}
-				
-				var sample_playlists = [ [1, 4, 2], [2, 5, 6]];
-				for( var i in sample_playlists )
-				{
-					var this_playlist = sample_playlists[i];
-					var this_playlist_ko = Cherry.prototypes.Playlist();
-					for( var song_id in this_playlist)
-					{
-						this_playlist_ko.songs.push( Cherry.library()[ this_playlist[ song_id]]);
-					}
-					
-					Cherry.playlists.push( this_playlist_ko);
-				}
-				return;
-			
+				var x = Cherry.prototypes.Song( {
+					"name" : fillString,
+					"path" : fillString
+				});
+				Cherry.library.push( x);
 			}
+			
+			var sample_playlists = [ [1, 4, 2], [2, 5, 6]];
+			for( var i in sample_playlists )
+			{
+				var this_playlist = sample_playlists[i];
+				var this_playlist_ko = Cherry.prototypes.Playlist();
+				for( var song_id in this_playlist)
+				{
+					this_playlist_ko.songs.push( Cherry.library()[ this_playlist[ song_id]]);
+				}
+				
+				Cherry.playlists.push( this_playlist_ko);
+			}
+			return;
 		};
 	
 		ko.applyBindings( Cherry);
