@@ -36,6 +36,11 @@
 	</ul>
   </div>
   
+  <div id='player_frame' data-bind='video_player: Cherry.state.selected.song'>
+	<div id='player_handle'></div>
+	<div class='player'></div>
+  </div>
+
   <!-- ko foreach: playlists -->
   <div class='b_playlist_container' data-bind='
 	   playlist_drag_ui: $data,

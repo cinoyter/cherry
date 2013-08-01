@@ -63,6 +63,17 @@ div.b_playlist_container.selected {
 }
 	
 
+#player_frame {
+	border: 1px solid green;
+	position: absolute;
+	left: 500px;
+	top: 200px;
+}
+
+#player_handle {
+	height: 20px;
+}
+
 #frameWorkspace {
 	height: 500px;
 	/* overflow: scroll; */

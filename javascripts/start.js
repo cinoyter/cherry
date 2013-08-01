@@ -6,6 +6,13 @@
 {
 	function initialize_environment( )
 	{
+
+		var tag = document.createElement('script');
+		tag.src = "http://www.youtube.com/iframe_api";
+		var firstScriptTag = document.getElementsByTagName('script')[0];
+		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+
 		ko.bindingHandlers.debug = {
 			init: function( element, valueAccessor, allBindingsAccessor, context) {
 				
@@ -22,7 +29,7 @@
 
 				$(element)
 					.data( "valueAccessor", valueAccessor )
-					.draggable({
+					.draggable( {
 						containment: "#workspace",
 						handle: "div.b_playlist_container_handle",
 						snap: "div.b_playlist_container",
@@ -43,13 +50,13 @@
 								var sn_top = sn_playlist.top(), sn_left = sn_playlist.left();
 								
 								playlist.left( left);
-								if( top < sn_top) { // Snapping underneath the dragged playlist
-									playlist.top( sn_top - $this.height());
+								if( top < sn_top && !playlist.next()) { // Snapping underneath
+									playlist.top( sn_top - $this.height() - 2);
 									playlist.next( sn_playlist);
 									sn_playlist.prev( playlist);
 								}
-								else { // Snapping above the dragged playlist
-									playlist.top( sn_top + $(snapped_to).height());
+								else if( !playlist.prev()) { // Snapping above the dragged playlist
+									playlist.top( sn_top + $(snapped_to).height() + 2);
 									playlist.prev( sn_playlist);
 									sn_playlist.next( playlist);
 								}
@@ -74,6 +81,52 @@
 			},
 			update: function( element, valueAccessor, allBindingsAccessor, context) {
 				
+			}
+		};
+
+		ko.bindingHandlers.video_player = {
+			init: function( element, valueAccessor, allBindingsAccessor, context) {
+				var $player_div = $("<div>").appendTo( element);
+				
+				window.onYouTubeIframeAPIReady = function onYouTubeIframeAPIReady() {
+					player = new YT.Player($player_div[0], {
+						height: '390',
+						width: '640',
+						videoId: '',
+						events: {
+							// 'onReady': player_ready,
+							'onStateChange' : player_state_changed,
+							'onError' : player_error
+						}
+					});
+
+					$(element).data( "player", player);
+				}
+
+				function player_error( event) {
+					console.log( event.data);
+				}
+
+				function player_state_changed( event) {
+					if( event.data == YT.PlayerState.ENDED) {// ended
+						Cherry.ui.song.select_next();
+					}
+				}
+
+			},
+			update: function( element, valueAccessor, allBindingsAccessor, context) {
+				var value = ko.unwrap( valueAccessor()),
+				player = $(element).data( "player");
+								
+				if( value && value.path) {
+					player.loadVideoByUrl( {
+						mediaContentUrl: value.path
+					});
+				}
+				else if( player) {
+					player.stopVideo();
+					player.clearVideo();
+				}
 			}
 		};
 
@@ -146,6 +199,7 @@
 					}));	
 				}
 			},
+
 			playlist: {
 				add: function Cherry__ui__playlist__add( ) {
 					Cherry.playlists.push( Cherry.prototypes.Playlist( {}));
@@ -229,10 +283,17 @@
 		};
 
 		Cherry.sample_data = function Cherry__support__sample_data(){
-			var letters = ["a", "b", "c", "d", "e", "f", "g"];
-			for( var letter in letters)
+			var videos = [
+				"http://www.youtube.com/v/sdyC1BrQd6g",
+				"http://www.youtube.com/v/aEm8UXNaXxk",
+				"http://www.youtube.com/v/X37EzJnuntk",
+				"http://www.youtube.com/v/b0Ti-gkJiXc",
+				"http://www.youtube.com/v/eSMeUPFjQHc",
+				"http://www.youtube.com/v/TxVQAj3SdF0",
+				"http://www.youtube.com/v/IY2j_GPIqRA"];
+			for( var v in videos)
 			{
-				var fillString = letters[letter] + letters[letter];
+				var fillString = videos[v];
 				
 				var x = Cherry.prototypes.Song( {
 					"name" : fillString,
@@ -256,6 +317,12 @@
 			return;
 		};
 	
+		
+		
+
+		
+
+
 		ko.applyBindings( Cherry);
 	
 	}
