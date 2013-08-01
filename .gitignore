@@ -1,3 +1,5 @@
+.sass-cache/
+
 #################
 ## Eclipse
 #################
@@ -213,3 +215,5 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+fire_app_log.txt
