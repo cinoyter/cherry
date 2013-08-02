@@ -23,33 +23,33 @@
 <div id='workspace' >
 
   <div id='toolbar'>
-	<div data-bind='click: Cherry.ui.library.add_song' class="btn">Add a song</div>
-	<div data-bind='click: Cherry.ui.playlist.add' class="btn">Add a playlist</div>
-	<div data-bind='click: Cherry.ui.song.select_next' class="btn">Next</div>
+	<button data-bind='click: Cherry.ui.library.add_song' class="btn">Add a song</button>
+	<button data-bind='click: Cherry.ui.playlist.add' class="btn">Add a playlist</button>
+	<button data-bind='click: Cherry.ui.song.select_next' class="btn">Next</button>
   </div>
   
-  <div id='library'>
-	<ul id='libraryDrag'>
+  <div id='library' class='window'>
+	<div class="title_bar">Library</div>
+	<ul id='libraryDrag' class='content music_list'>
 	  <!-- ko foreach: library -->
 	  <li data-bind='draggable: $data, text: name'></li>
 	  <!-- /ko -->
 	</ul>
   </div>
   
-  <div id='player_frame' data-bind='video_player: Cherry.state.selected.song'>
+  <div id='player_frame' class="window" data-bind='video_player: Cherry.state.selected.song'>
 	<div id='player_handle'></div>
 	<div class='player'></div>
   </div>
 
   <!-- ko foreach: playlists -->
-  <div class='b_playlist_container' data-bind='
+  <div class='b_playlist_container window' data-bind='
 	   playlist_drag_ui: $data,
-	   css: { selected: selected },
 	   style: { left: left() + "px", top: top() + "px"  },
 	   click: Cherry.ui.playlist.select
 	   '>
-	<div class="b_playlist_container_handle">X</div>
-	<ul class='b_playlist' 
+	<div class="b_playlist_container_handle title_bar">X</div>
+	<ul class='b_playlist content music_list' 
 		data-bind='
 		sortable: { 
 		template: "tmplSong", 

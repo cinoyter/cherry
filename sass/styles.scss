@@ -1,53 +1,72 @@
 // I gather this file is a starting point for the project.
-@import "bootstrap";
+// @import "bootstrap";
 
 // Include responsive Bootstrap styles
-@import "bootstrap-responsive";
+// @import "bootstrap-responsive";
 
-$playlist_background_color: white;
-$playlist_color: black;
+$window_frame_color: #6c8cd5;
+$window_title_color: white;
+$content_background_color: white;
+$content_color: black;
 
 html, body, #workspace {
 	height: 100%;
 	width: 100%;
 	margin: 0;
-	padding: 0
+	padding: 0;
+
+	font: {
+		family: "Verdana", "Bitstream Vera Sans", sans-serif;
+		size: 9pt;
+	}
 }
+
+.window {
+	position: absolute;
+	display: inline-block;
+	background-color: $window_frame_color;
+	padding: 2px;
+	
+	.title_bar {
+		background-color: $window_frame_color;
+		color: $window_title_color;
+	}
+
+	.content {
+		background-color: $content_background_color;
+		color: $content_color;
+	}
+	
+	ul.music_list {
+		margin: 0;
+		padding: 0px;
+		li {
+			list-style-type: none;
+			display: block;
+			border: 1px solid rgba( 0, 0, 0, 0);
+			margin: 0;
+			padding: 2px;
+		}
+
+		li:hover {
+			border: 1px dashed darkgrey !important;
+		}
+
+		.selected_index {
+			background-color: lightgrey !important;
+		}
+		.selected_song {
+			border: 1px dashed darkgrey !important;
+		}
+			
+	}
+
+}
+
 
 div.b_playlist_container {
 	width: 200px;
-	border: 1px solid black;
-	background-color: $playlist_background_color;
-	color: $playlist_color;
-	display: inline-block;
-	position: absolute;
-	
-	div.b_playlist_container_handle {
-		width: 100%;
-		color: $playlist_background_color;
-		background-color: $playlist_color;
-	}
 
-	ul.b_playlist {
-		li {
-			list-style-type: none;
-			margin: 0;
-			padding: 0;
-			display: block;
-		}
-
-		.selected_song {
-			border: 1px dashed red;
-		}
-		
-		.selected_index { 
-			background-color: yellow;
-		}
-
-		margin: 0;
-		padding: 5px 0 0 0;
-		
-	}
 	div.playlist_bottom_drag_target.waiting {
 		height: 10px;
 		background-color: rgb( 220, 220, 220);
@@ -58,14 +77,8 @@ div.b_playlist_container {
 	}
 
 }
-div.b_playlist_container.selected {
-	border: 2px solid blue;
-}
-	
 
 #player_frame {
-	border: 1px solid green;
-	position: absolute;
 	left: 500px;
 	top: 200px;
 }
@@ -74,25 +87,7 @@ div.b_playlist_container.selected {
 	height: 20px;
 }
 
-#frameWorkspace {
-	height: 500px;
-	/* overflow: scroll; */
-	/* white-space: nowrap; */
-}
-
-/* #workspace { */
-/* 	position: absolute; */
-/* 	height: 100%; */
-/* 	width: 100%; */
-/* 	margin: 0; */
-/* 	padding: 0; */
-
-/* } */
-
 #library {
-	border: 1px solid red;
 	left: 40px;
 	top: 40px;
-	display: inline-block;
-	position: absolute;
 }
