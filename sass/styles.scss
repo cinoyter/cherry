@@ -41,6 +41,7 @@ html, body, #workspace {
 	ul.music_list {
 		margin: 0;
 		padding: 0px;
+		min-height: 3px;
 		li {
 			list-style-type: none;
 			display: block;
