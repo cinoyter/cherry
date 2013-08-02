@@ -20,7 +20,7 @@
 				.data( "valueAccessor", valueAccessor )
 				.draggable( {
 					containment: "#workspace",
-					handle: "div.b_playlist_container_handle",
+					handle: "div.title_bar",
 					snap: "div.b_playlist_container",
 					snapMode: "outer",
 					zIndex: 100,

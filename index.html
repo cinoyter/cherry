@@ -26,6 +26,7 @@
 	<button data-bind='click: Cherry.ui.library.add_song' class="btn">Add a song</button>
 	<button data-bind='click: Cherry.ui.playlist.add' class="btn">Add a playlist</button>
 	<button data-bind='click: Cherry.ui.song.select_next' class="btn">Next</button>
+	<button data-bind='click: Cherry.sample_data' class="btn">Sample Data!!!</button>
   </div>
   
   <div id='library' class='window'>
@@ -38,7 +39,7 @@
   </div>
   
   <div id='player_frame' class="window" data-bind='video_player: Cherry.state.selected.song'>
-	<div id='player_handle'></div>
+	<div class='title_bar'>Player</div>
 	<div class='player'></div>
   </div>
 
@@ -48,7 +49,7 @@
 	   style: { left: left() + "px", top: top() + "px"  },
 	   click: Cherry.ui.playlist.select
 	   '>
-	<div class="b_playlist_container_handle title_bar">X</div>
+	<div class="title_bar">X</div>
 	<ul class='b_playlist content music_list' 
 		data-bind='
 		sortable: { 

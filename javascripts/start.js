@@ -7,6 +7,11 @@
 	function initialize_environment( )
 	{
 			
+		$("#library, #player_frame").draggable( {
+			handle: "div.title_bar",
+			iframeFix: true
+		});
+
 		window.Cherry = window.Cherry || {};
 	
 		Cherry.prototypes = {

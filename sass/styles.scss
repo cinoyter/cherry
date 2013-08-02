@@ -30,6 +30,7 @@ html, body, #workspace {
 	.title_bar {
 		background-color: $window_frame_color;
 		color: $window_title_color;
+		width: 100%;
 	}
 
 	.content {
@@ -81,10 +82,6 @@ div.b_playlist_container {
 #player_frame {
 	left: 500px;
 	top: 200px;
-}
-
-#player_handle {
-	height: 20px;
 }
 
 #library {
