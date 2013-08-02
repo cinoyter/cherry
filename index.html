@@ -91,15 +91,14 @@
 
 <script src="javascripts/knockout-2.3.0.js"></script>
 <script src="javascripts/knockout-sortable.js"></script>
-<script src="javascripts/knockout-jquery-ui-widget.js"></script>
 
-
-<!-- scripts concatenated and minified via ant build script-->
-<!-- <script src="javascripts/plugins.js"></script> -->
+<script src="javascripts/bindings.js"></script>
 <script src="javascripts/start.js"></script>
-<!-- end scripts-->
+<script src="javascripts/yt.js"></script>
 
-<script>
+<script src="https://apis.google.com/js/client.js?onload=gapi_onload"></script>
+
+<script type="text/html">
 	var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']]; // Change UA-XXXXX-X to be your site's ID
 	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
 	g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
@@ -113,3 +112,4 @@
 
 </body>
 </html>
+
