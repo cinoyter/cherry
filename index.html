@@ -54,7 +54,9 @@
 	   style: { left: left() + "px", top: top() + "px"  },
 	   click: Cherry.ui.playlist.select
 	   '>
-	<div class="title_bar">X</div>
+	<div class="title_bar">
+	  <span class="ui-icon ui-icon-circle-minus remove-icon"
+			data-bind="click: Cherry.ui.playlist.remove"></div>
 	<ul class='b_playlist content music_list' 
 		data-bind='
 		sortable: { 

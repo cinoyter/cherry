@@ -99,6 +99,9 @@
 					Cherry.playlists.push( pl);
 					
 				},
+				after_sort: function( arg, e, ui) {
+					$("#workspace_target_underlay").hide();
+				},
 				before_sort: function( arg, e, ui) {
 					$("#workspace_target_underlay").show();
 
@@ -109,8 +112,8 @@
 					Cherry.ui.mouse.last_drop_top( relTop);
 					Cherry.ui.mouse.last_drop_left( relLeft);
 				},
-				after_sort: function( arg, e, ui) {
-					$("#workspace_target_underlay").hide();
+				remove: function( pl) {
+					Cherry.playlists.remove( pl);
 				},
 				select: function Cherry__ui__playlist__select( obj) {
 					Cherry.state.selected.playlist( obj);
