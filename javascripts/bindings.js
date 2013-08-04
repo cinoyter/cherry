@@ -1,5 +1,9 @@
 ;( function( ko) {
 
+	// Magic numbers
+	var border_width = 4;
+
+
 	// Knockout.js binding handlers
 
 	ko.bindingHandlers.debug = {
@@ -39,13 +43,16 @@
 							var sn_top = sn_playlist.top(), sn_left = sn_playlist.left();
 							
 							playlist.left( left);
-							if( top < sn_top && !playlist.next()) { // Snapping underneath
-								playlist.top( sn_top - $this.height() - 2);
+							
+							if( top < (sn_top + 10) && !playlist.next()) { 
+								// Snapping underneath
+								playlist.top( sn_top - $this.height() - border_width);
 								playlist.next( sn_playlist);
 								sn_playlist.prev( playlist);
 							}
-							else if( !playlist.prev()) { // Snapping above the dragged playlist
-								playlist.top( sn_top + $(snapped_to).height() + 2);
+							else if( !playlist.prev()) { 
+								// Snapping above the dragged playlist
+								playlist.top( sn_top + $(snapped_to).height() + border_width);
 								playlist.prev( sn_playlist);
 								sn_playlist.next( playlist);
 							}
@@ -72,6 +79,7 @@
 			
 		}
 	};
+
 
 	ko.bindingHandlers.video_player = {
 		init: function( element, valueAccessor, allBindingsAccessor, context) {

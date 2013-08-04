@@ -60,23 +60,30 @@ html, body, #workspace {
 		.selected_song {
 			border: 1px dashed darkgrey !important;
 		}
+
+		.remove-icon {
+			float: right;
+			
+		}
 			
 	}
 
 }
 
+#workspace_target_underlay {
+	display: none;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+
+#toolbar {
+	z-index: 5;
+}
+
 
 div.b_playlist_container {
 	width: 200px;
-
-	div.playlist_bottom_drag_target.waiting {
-		height: 10px;
-		background-color: rgb( 220, 220, 220);
-	}
-	div.playlist_bottom_drag_target.hover {
-		height: 10px;
-		background-color: red;
-	}
 
 }
 

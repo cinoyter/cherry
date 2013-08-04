@@ -88,10 +88,29 @@
 					});
 				}
 			},
+			mouse : {
+				last_drop_top: ko.observable(),
+				last_drop_left: ko.observable()
+			},
 
 			playlist: {
-				add: function Cherry__ui__playlist__add( ) {
-					Cherry.playlists.push( Cherry.prototypes.Playlist( {}));
+				add: function Cherry__ui__playlist__add( opts) {
+					var pl = Cherry.prototypes.Playlist( opts);
+					Cherry.playlists.push( pl);
+					
+				},
+				before_sort: function( arg, e, ui) {
+					$("#workspace_target_underlay").show();
+
+					var workspace_offset = $("#workspace").offset();
+					var relLeft = e.pageX - workspace_offset.left;
+					var relTop = e.pageY - workspace_offset.top;
+
+					Cherry.ui.mouse.last_drop_top( relTop);
+					Cherry.ui.mouse.last_drop_left( relLeft);
+				},
+				after_sort: function( arg, e, ui) {
+					$("#workspace_target_underlay").hide();
 				},
 				select: function Cherry__ui__playlist__select( obj) {
 					Cherry.state.selected.playlist( obj);
@@ -204,8 +223,24 @@
 			return;
 		};
 	
-		
-		
+		// Catch new songs being dragged to workspace with this fake playlist.
+		// We watch it for changes and when they happen, we pop them and make a new
+		// playlist at the last mouse-drop coordinates.
+		Cherry.ui.playlist.pending_new_playlist = ko.observableArray([]);
+		Cherry.ui.playlist.pending_new_playlist.subscribe( function( val) {
+			if( val[0]) {
+				var songs = [val[0]];
+				
+				Cherry.ui.playlist.add( 
+					{ 
+						songs: songs,
+						left: Cherry.ui.mouse.last_drop_left(),
+						top: Cherry.ui.mouse.last_drop_top()
+					} ); 			
+				Cherry.ui.playlist.pending_new_playlist.pop();
+			}
+		});
+
 		ko.applyBindings( Cherry);
 	
 	}
