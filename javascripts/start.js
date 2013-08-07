@@ -56,7 +56,7 @@
 
 				x.selected = ko.computed( function() {
 					return this == Cherry.state.selected.playlist();
-				}, x)
+				}, x);
 
 				x.id = Cherry.ui.next_id( "playlist");
 				return x;
@@ -103,14 +103,29 @@
 					$("#workspace_target_underlay").hide();
 				},
 				before_sort: function( arg, e, ui) {
+					e.stopPropagation();
 					$("#workspace_target_underlay").show();
 
+					// Save location of last drop for the subscription
+					// which will build the new playlist on the workspace
 					var workspace_offset = $("#workspace").offset();
 					var relLeft = e.pageX - workspace_offset.left;
 					var relTop = e.pageY - workspace_offset.top;
 
-					Cherry.ui.mouse.last_drop_top( relTop);
-					Cherry.ui.mouse.last_drop_left( relLeft);
+					// Hack to get past jQuery bug 7777:
+					// http://bugs.jqueryui.com/ticket/7777
+					// If we are dropping onto the overlay to make a new playlist,
+					// make sure we aren't also on top of some other widget
+					var elt_at_point = document.elementFromPoint( e.clientX, e.clientY);
+					if( $(elt_at_point).is( "ul.b_playlist") &&
+						e.target.id == "workspace_target_underlay") {
+						arg.cancelDrop = true;
+						$("#workspace_target_underlay").hide();
+					}
+					else {
+						Cherry.ui.mouse.last_drop_top( relTop);
+						Cherry.ui.mouse.last_drop_left( relLeft);
+					}
 				},
 				remove: function( pl) {
 					Cherry.playlists.remove( pl);
@@ -167,8 +182,6 @@
 				}
 			},
 			
-
-
 			next_id : function Cherry__support__next_id( id_type)
 			{
 				if( !id_type) {				

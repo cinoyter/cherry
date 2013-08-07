@@ -23,9 +23,9 @@
 
 <div id='workspace' >
   <div id='workspace_target_underlay'
-	   data-bind='sortable: {data: Cherry.ui.playlist.pending_new_playlist,
-	   beforeMove: Cherry.ui.playlist.before_sort,
-	   afterMove: Cherry.ui.playlist.after_sort}'></div>
+  	   data-bind='sortable: {data: Cherry.ui.playlist.pending_new_playlist,
+  	   beforeMove: Cherry.ui.playlist.before_sort,
+  	   afterMove: Cherry.ui.playlist.after_sort}'></div>
 
 
   <div id='toolbar'>
@@ -51,8 +51,9 @@
   <!-- ko foreach: playlists -->
   <div class='b_playlist_container window' data-bind='
 	   playlist_drag_ui: $data,
-	   style: { left: left() + "px", top: top() + "px"  },
-	   click: Cherry.ui.playlist.select
+	   style: { left: left() + "px", top: top() + "px" },
+	   click: Cherry.ui.playlist.select,
+	   ensure_height: { parent: $data, length: songs().length }
 	   '>
 	<div class="title_bar">
 	  <span class="ui-icon ui-icon-circle-minus remove-icon"
@@ -62,12 +63,13 @@
 		sortable: { 
 		template: "tmplSong", 
 		data: songs,
+		beforeMove: Cherry.ui.playlist.before_sort,
 		afterMove: Cherry.ui.playlist.after_sort
 		}
 		'
 		>
 	</ul>
-	<div class="playlist_bottom_drag_target"></div>
+
   </div>
   <!-- /ko -->
 
@@ -94,10 +96,10 @@
 
 	
 	
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.js"><\/script>')</script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
-<script>window.jQuery || document.write('<script src="js/libs/jquery-1.8.16.min.js"><\/script>')</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/libs/jquery-2.0.3.js"><\/script>')</script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js"></script>
+<script>window.jQuery || document.write('<script src="js/libs/jquery-1.10.3.min.js"><\/script>')</script>
 
 <script src="javascripts/knockout-2.3.0.js"></script>
 <script src="javascripts/knockout-sortable.js"></script>
@@ -122,4 +124,6 @@
 
 </body>
 </html>
+
+
 

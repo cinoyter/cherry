@@ -31,7 +31,7 @@
 					stop: function( e, ui) {
 						var $this = $(this);
 						var playlist = ko.unwrap( valueAccessor());
-						var snapped = $this.data( 'draggable').snapElements;
+						var snapped = $this.data( 'ui-draggable').snapElements;
 						
 						var snapped_to = $.map( snapped, function( elt) { 
 							return elt.snapping ? elt.item : null;
@@ -43,7 +43,7 @@
 							var sn_top = sn_playlist.top(), sn_left = sn_playlist.left();
 							
 							playlist.left( left);
-							
+
 							if( top < (sn_top + 10) && !playlist.next()) { 
 								// Snapping underneath
 								playlist.top( sn_top - $this.height() - border_width);
@@ -72,11 +72,26 @@
 
 						}
 					}
-				});
+				})
+			;
 
 		},
 		update: function( element, valueAccessor, allBindingsAccessor, context) {
+		}
+	};
+
+	ko.bindingHandlers.ensure_height = {
+		init: function( element, valueAccessor, allBindingsAccessor, context) {
 			
+		},
+		update: function( element, valueAccessor, allBindingsAccessor, context) {
+			var value = valueAccessor();
+			var parent = value.parent;
+			var next = parent.next(), prev = parent.prev();
+
+			if( next) {
+				next.top( parent.top() + $(element).height() + border_width);
+			}
 		}
 	};
 
