@@ -128,6 +128,13 @@
 					}
 				},
 				remove: function( pl) {
+					if( pl.prev() && pl.next()) {
+						pl.prev().next( pl.next());
+					}
+					else {
+						if( pl.prev()) pl.prev().next( null);
+						if( pl.next()) pl.next().prev( null);
+					}
 					Cherry.playlists.remove( pl);
 				},
 				select: function Cherry__ui__playlist__select( obj) {
