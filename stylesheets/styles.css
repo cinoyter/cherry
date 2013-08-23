@@ -27,12 +27,17 @@ html, body, #workspace {
   color: black;
 }
 /* line 41, ../sass/styles.scss */
+.window li.b_song {
+  width: 194px;
+  min-width: 194px;
+}
+/* line 46, ../sass/styles.scss */
 .window ul.music_list {
   margin: 0;
   padding: 0px;
   min-height: 3px;
 }
-/* line 45, ../sass/styles.scss */
+/* line 50, ../sass/styles.scss */
 .window ul.music_list li {
   list-style-type: none;
   display: block;
@@ -40,24 +45,24 @@ html, body, #workspace {
   margin: 0;
   padding: 2px;
 }
-/* line 53, ../sass/styles.scss */
+/* line 58, ../sass/styles.scss */
 .window ul.music_list li:hover {
   border: 1px dashed darkgrey !important;
 }
-/* line 57, ../sass/styles.scss */
+/* line 62, ../sass/styles.scss */
 .window ul.music_list .selected_index {
   background-color: lightgrey !important;
 }
-/* line 60, ../sass/styles.scss */
+/* line 65, ../sass/styles.scss */
 .window ul.music_list .selected_song {
   border: 1px dashed darkgrey !important;
 }
-/* line 64, ../sass/styles.scss */
+/* line 69, ../sass/styles.scss */
 .window ul.music_list .remove-icon {
   float: right;
 }
 
-/* line 73, ../sass/styles.scss */
+/* line 75, ../sass/styles.scss */
 #workspace_target_underlay {
   display: none;
   width: 100%;
@@ -65,24 +70,27 @@ html, body, #workspace {
   position: absolute;
 }
 
-/* line 80, ../sass/styles.scss */
+/* line 82, ../sass/styles.scss */
 #toolbar {
   z-index: 5;
+  background-color: lightgrey;
+  border-bottom: 1px solid darkgrey;
 }
 
-/* line 85, ../sass/styles.scss */
+/* line 88, ../sass/styles.scss */
 div.b_playlist_container {
   width: 200px;
 }
 
-/* line 90, ../sass/styles.scss */
+/* line 92, ../sass/styles.scss */
 #player_frame {
   left: 500px;
   top: 200px;
 }
 
-/* line 95, ../sass/styles.scss */
+/* line 97, ../sass/styles.scss */
 #library {
   left: 40px;
   top: 40px;
+  width: 200px;
 }

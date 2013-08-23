@@ -38,6 +38,11 @@ html, body, #workspace {
 		color: $content_color;
 	}
 	
+	li.b_song {
+		width: 194px;
+		min-width: 194px;
+	}
+
 	ul.music_list {
 		margin: 0;
 		padding: 0px;
@@ -62,12 +67,9 @@ html, body, #workspace {
 		}
 
 		.remove-icon {
-			float: right;
-			
-		}
-			
+			float: right;		
+		}		
 	}
-
 }
 
 #workspace_target_underlay {
@@ -79,12 +81,12 @@ html, body, #workspace {
 
 #toolbar {
 	z-index: 5;
+	background-color: lightgrey;
+	border-bottom: 1px solid darkgrey;
 }
-
 
 div.b_playlist_container {
 	width: 200px;
-
 }
 
 #player_frame {
@@ -95,4 +97,5 @@ div.b_playlist_container {
 #library {
 	left: 40px;
 	top: 40px;
+	width: 200px;
 }

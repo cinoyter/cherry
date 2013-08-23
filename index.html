@@ -14,7 +14,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 
 	<link rel="stylesheet" href="stylesheets/styles.css">
-	<link rel="stylesheet" href="stylesheets/jquery-ui-1.10.3.custom.min.css">
+	<link rel="stylesheet" href="stylesheets/jquery-ui-1.10.3.custom.css">
 
 	<script src="javascripts/modernizr-latest.js"></script>
 	<script src="javascripts/respond.min.js"></script>
@@ -29,9 +29,20 @@
 
 
   <div id='toolbar'>
-	<button data-bind='click: Cherry.ui.library.add_song' class="btn">Add a song to library</button>
-	<button data-bind='click: Cherry.ui.song.select_next' class="btn">Next</button>
-	<button data-bind='click: Cherry.sample_data' class="btn">Sample Data!!!</button>
+	<button data-bind='
+			click: Cherry.ui.library.add_song,
+			button: { icons: { primary: "ui-icon-plus"}, text: true}' 
+			class="btn">Add a video to the library</button>
+	<button data-bind='
+			click: Cherry.ui.song.select_next,
+			button: { icons: { primary: "ui-icon-seek-end"}, text: true}' 
+			class="btn">Next video</button>
+	<button data-bind='
+			click: Cherry.sample_data,
+			button: { icons: { primary: "ui-icon-heart"}, text: true}'
+			class="btn">Fill the library with sample data</button>
+  
+	<span class="about">You're using Cherry, a spatial playlister, by Sam Imberman. Check it out on <a href="https://github.com/cinoyter/cherry">Github</a>.</span>
   </div>
   
   <div id='library' class='window'>
@@ -77,6 +88,7 @@
   
   
 </div>
+
 <script type='text/html' id='tmplSong'>
 	<li class='b_song' data-bind='
 		click: function( obj, e) { Cherry.ui.song.select( obj); Cherry.ui.playlist.select_index( $index());},
@@ -103,6 +115,7 @@
 
 <script src="javascripts/knockout-2.3.0.js"></script>
 <script src="javascripts/knockout-sortable.js"></script>
+<script src="javascripts/knockout-jqueryui.min.js"></script>
 
 <script src="javascripts/bindings.js"></script>
 <script src="javascripts/start.js"></script>
