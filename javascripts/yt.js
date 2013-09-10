@@ -1,4 +1,8 @@
-
+//
+// yt.js
+//
+// Contains the code to interface with Youtube's data API.
+//
 
 
 ;

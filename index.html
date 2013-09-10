@@ -16,8 +16,8 @@
 	<link rel="stylesheet" href="stylesheets/styles.css">
 	<link rel="stylesheet" href="stylesheets/jquery-ui-1.10.3.custom.css">
 
-	<script src="javascripts/modernizr-latest.js"></script>
-	<script src="javascripts/respond.min.js"></script>
+	<script src="javascripts/vendor/modernizr-latest.js"></script>
+	<script src="javascripts/vendor/respond.min.js"></script>
 </head>
 <body>
 
@@ -96,7 +96,7 @@
 		selected_song: selected, 
 		selected_index: $index() == Cherry.state.selected.playlist_idx() && $parent.selected() }
 		'>
-	  <a data-bind='click: $parent.removeSong'><span class="ui-icon ui-icon-circle-minus remove-icon"></span></a>	
+	  <a data-bind='click: $parent.remove_song'><span class="ui-icon ui-icon-circle-minus remove-icon"></span></a>	
 	  <span class='b_song_name'
 			data-bind='
 				text: name
@@ -109,13 +109,13 @@
 	
 	
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/libs/jquery-2.0.3.js"><\/script>')</script>
+<script>window.jQuery || document.write('<script src="javascripts/vendor/jquery-2.0.3.js"><\/script>')</script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js"></script>
-<script>window.jQuery || document.write('<script src="js/libs/jquery-1.10.3.min.js"><\/script>')</script>
+<script>window.jQuery || document.write('<script src="javascripts/vendor/jquery-1.10.3.min.js"><\/script>')</script>
 
-<script src="javascripts/knockout-2.3.0.js"></script>
-<script src="javascripts/knockout-sortable.js"></script>
-<script src="javascripts/knockout-jqueryui.min.js"></script>
+<script src="javascripts/vendor/knockout-2.3.0.js"></script>
+<script src="javascripts/vendor/knockout-sortable.js"></script>
+<script src="javascripts/vendor/knockout-jqueryui.min.js"></script>
 
 <script src="javascripts/bindings.js"></script>
 <script src="javascripts/start.js"></script>

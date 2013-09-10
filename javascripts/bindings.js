@@ -1,10 +1,15 @@
+//
+// bindings.js
+//
+// Contains the Knockout bindings which handle the interactions between
+// underlying data models and the UI.
+//
+
+
 ;( function( ko) {
 
 	// Magic numbers
 	var border_width = 4;
-
-
-	// Knockout.js binding handlers
 
 	ko.bindingHandlers.debug = {
 		init: function( element, valueAccessor, allBindingsAccessor, context) {
@@ -17,6 +22,7 @@
 	};
 
 	ko.bindingHandlers.playlist_drag_ui = {
+		// Handles the dragging and snapping of playlists.
 		init: function( element, valueAccessor, allBindingsAccessor, context) {
 			var value = valueAccessor();
 
@@ -97,6 +103,7 @@
 
 
 	ko.bindingHandlers.video_player = {
+		// Creates the video player and tracks the currently selected video.
 		init: function( element, valueAccessor, allBindingsAccessor, context) {
 			var $player_div = $("<div>").appendTo( element);
 			

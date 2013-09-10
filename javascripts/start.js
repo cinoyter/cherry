@@ -1,6 +1,8 @@
-/* Author:
-
-*/
+//
+// start.js
+// Creates the environment and sets up the "Cherry" namespace, which contains
+// the data model and all of the functions that operate on it.
+//
 
 ;(function( $)
 {
@@ -14,25 +16,25 @@
 
 		window.Cherry = window.Cherry || {};
 	
-		Cherry.prototypes = {
-			Song: function( data_in ) {
+		Cherry.models = {
+			create_song: function( data_in ) {
 				data_in = data_in || {};
 				
-				var x = {
+				var s = {
 					"id" : Cherry.ui.next_id( "song"),
 					"name" : ko.observable( data_in.name || null),
 					"path" : ko.observable( data_in.path || null)
 				};
 
-				x.selected = ko.computed( function() {
+				s.selected = ko.computed( function() {
 					return this == Cherry.state.selected.song();
-				}, x);
+				}, s);
 				
-				return x;
+				return s;
 			},
 
-			Playlist : function( data_in) {
-				var x = {
+			create_playlist : function( data_in) {
+				var pl = {
 					"left": ko.observable(100),
 					"top": ko.observable(100),
 					"height": ko.observable(),
@@ -45,21 +47,21 @@
 				};				
 				
 				for( var i in data_in) {
-					if( x[i]) {
-						x[i]( data_in[i]);
+					if( pl[i]) {
+						pl[i]( data_in[i]);
 					}
 				}
 
-				x.removeSong = function( song) {
-					x.songs.remove( song);
+				pl.remove_song = function( song) {
+					pl.songs.remove( song);
 				};
 
-				x.selected = ko.computed( function() {
+				pl.selected = ko.computed( function() {
 					return this == Cherry.state.selected.playlist();
-				}, x);
+				}, pl);
 
-				x.id = Cherry.ui.next_id( "playlist");
-				return x;
+				pl.id = Cherry.ui.next_id( "playlist");
+				return pl;
 			}	
 		};
 				
@@ -80,7 +82,7 @@
 					}
 					var id = Cherry.youtube.get_id_from_url( url);
 
-					var s = Cherry.prototypes.Song( { name: id, path: id});
+					var s = Cherry.models.create_song( { name: id, path: id});
 					Cherry.library.push( s);
 
 					Cherry.youtube.get_name_from_id( id, function( name) {
@@ -95,7 +97,7 @@
 
 			playlist: {
 				add: function Cherry__ui__playlist__add( opts) {
-					var pl = Cherry.prototypes.Playlist( opts);
+					var pl = Cherry.models.create_playlist( opts);
 					Cherry.playlists.push( pl);
 					
 				},
@@ -235,7 +237,7 @@
 			for( var i in sample_playlists )
 			{
 				var this_playlist = sample_playlists[i];
-				var this_playlist_ko = Cherry.prototypes.Playlist();
+				var this_playlist_ko = Cherry.models.create_playlist();
 				for( var song_id in this_playlist)
 				{
 					this_playlist_ko.songs.push( Cherry.library()[ this_playlist[ song_id]]);
