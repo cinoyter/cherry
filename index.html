@@ -26,32 +26,39 @@
   	   data-bind='sortable: {data: Cherry.ui.playlist.pending_new_playlist,
   	   beforeMove: Cherry.ui.playlist.before_sort,
   	   afterMove: Cherry.ui.playlist.after_sort}'></div>
-
-
+  
   <div id='toolbar'>
-	<button data-bind='
-			click: Cherry.ui.library.add_song,
-			button: { icons: { primary: "ui-icon-plus"}, text: true}' 
-			class="btn">Add a video to the library</button>
+
 	<button data-bind='
 			click: Cherry.ui.song.select_next,
 			button: { icons: { primary: "ui-icon-seek-end"}, text: true}' 
-			class="btn">Next video</button>
-	<button data-bind='
-			click: Cherry.sample_data,
-			button: { icons: { primary: "ui-icon-heart"}, text: true}'
-			class="btn">Fill the library with sample data</button>
-  
-	<span class="about">You're using Cherry, a spatial playlister, by Sam Imberman. Check it out on <a href="https://github.com/cinoyter/cherry">Github</a>.</span>
+			class="btn">Next Song</button>
+
   </div>
   
+  <div id="help">
+	<p data-bind='fadeVisible: !Cherry.library().length '>
+	  To get started, you'll need to add some videos to your library.<br/>
+	  If you'd like a sample library of awesome disco, 
+	  <a href="#" data-bind='click: Cherry.sample_data'>click here</a>.
+	</p>
+	<p data-bind='fadeVisible: Cherry.library().length'>
+	  Drag videos from the library or playlists into the workspace to create new playlists. You can also dock playlists against each other to flow straight from one to the next.
+	</p>
+
+  </div>
+
+  
+
   <div id='library' class='window'>
 	<div class="title_bar">Library</div>
 	<ul id='libraryDrag' class='content music_list'>
 	  <!-- ko foreach: library -->
 	  <li class="b_song" data-bind='draggable: $data, text: name'></li>
 	  <!-- /ko -->
+	  <li class="b_add_link"><a href="#" data-bind='click:Cherry.ui.library.add_song'>Add a video</a></li> 
 	</ul>
+	
   </div>
   
   <div id='player_frame' class="window" data-bind='video_player: Cherry.state.selected.song'>
@@ -59,12 +66,12 @@
 	<div class='player'></div>
   </div>
 
+
   <!-- ko foreach: playlists -->
   <div class='b_playlist_container window' data-bind='
 	   playlist_drag_ui: $data,
 	   style: { left: left() + "px", top: top() + "px" },
-	   click: Cherry.ui.playlist.select,
-	   ensure_height: { parent: $data, length: songs().length }
+	   click: Cherry.ui.playlist.select
 	   '>
 	<div class="title_bar">
 	  <span class="ui-icon ui-icon-circle-minus remove-icon"

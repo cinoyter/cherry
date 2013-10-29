@@ -219,13 +219,15 @@
 
 		Cherry.sample_data = function Cherry__support__sample_data(){
 			var videos = [
-				"http://www.youtube.com/v/sdyC1BrQd6g",
-				"http://www.youtube.com/v/aEm8UXNaXxk",
-				"http://www.youtube.com/v/X37EzJnuntk",
-				"http://www.youtube.com/v/b0Ti-gkJiXc",
-				"http://www.youtube.com/v/eSMeUPFjQHc",
-				"http://www.youtube.com/v/TxVQAj3SdF0",
-				"http://www.youtube.com/v/IY2j_GPIqRA"];
+				"http://www.youtube.com/watch?v=imYJpr09IgQ",
+				"http://www.youtube.com/watch?v=SvPZo52X5vo",
+				"http://www.youtube.com/watch?v=17lkdqoLt44",
+				"http://www.youtube.com/watch?v=phNLASyPsUU",
+				"http://www.youtube.com/watch?v=grlWFQ4Jdf4",
+				"http://www.youtube.com/watch?v=cAQSZhazYk8",
+				"http://www.youtube.com/watch?v=1wVaGo5wSqA",
+				"http://www.youtube.com/watch?v=Mpqlpm39nqk"
+			];
 			for( var v in videos)
 			{
 				var fillString = videos[v];
@@ -233,7 +235,7 @@
 				Cherry.ui.library.add_song( fillString);
 			}
 			
-			var sample_playlists = [ [1, 4, 2], [2, 5, 6]];
+			var sample_playlists = [ [1, 4, 2], [2, 5, 6], [3, 7, 5]];
 			for( var i in sample_playlists )
 			{
 				var this_playlist = sample_playlists[i];
@@ -242,6 +244,9 @@
 				{
 					this_playlist_ko.songs.push( Cherry.library()[ this_playlist[ song_id]]);
 				}
+
+				this_playlist_ko.top( i * 50 + 200);
+				this_playlist_ko.left( i * 20 + 250);
 				
 				Cherry.playlists.push( this_playlist_ko);
 			}

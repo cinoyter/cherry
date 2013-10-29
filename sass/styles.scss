@@ -55,7 +55,7 @@ html, body, #workspace {
 			padding: 2px;
 		}
 
-		li:hover {
+		li.b_song:hover {
 			border: 1px dashed darkgrey !important;
 		}
 
@@ -87,6 +87,15 @@ html, body, #workspace {
 
 div.b_playlist_container {
 	width: 200px;
+}
+
+#help {
+	position: absolute;
+	display: inline-block;
+	left: 25em;
+	top: 3em;
+	width: 35%;
+	color: darkgrey;
 }
 
 #player_frame {

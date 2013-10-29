@@ -46,7 +46,7 @@ html, body, #workspace {
   padding: 2px;
 }
 /* line 58, ../sass/styles.scss */
-.window ul.music_list li:hover {
+.window ul.music_list li.b_song:hover {
   border: 1px dashed darkgrey !important;
 }
 /* line 62, ../sass/styles.scss */
@@ -83,12 +83,22 @@ div.b_playlist_container {
 }
 
 /* line 92, ../sass/styles.scss */
+#help {
+  position: absolute;
+  display: inline-block;
+  left: 25em;
+  top: 3em;
+  width: 35%;
+  color: darkgrey;
+}
+
+/* line 101, ../sass/styles.scss */
 #player_frame {
   left: 500px;
   top: 200px;
 }
 
-/* line 97, ../sass/styles.scss */
+/* line 106, ../sass/styles.scss */
 #library {
   left: 40px;
   top: 40px;
